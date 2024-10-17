@@ -7,10 +7,10 @@ import Album from "./features/albums/Album";
 const AppContainer = styled.div`
   width: 100%;
   height: auto;
-  background-image: url(src/assets/Desktop.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-color: red;
   @media (min-width: 800px) {
     height: 1124px;
     display: flex;
