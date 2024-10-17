@@ -3,6 +3,7 @@ import Home from "./features/Main/Home";
 import GlobalStyles from "./styles/GlobalStyle";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Album from "./features/albums/Album";
+import background from "./assets/image/Desktop.png"
 
 const AppContainer = styled.div`
   width: 100%;
@@ -10,7 +11,7 @@ const AppContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-color: red;
+  background-image: url(src/assets/image/Desktop.png);
   @media (min-width: 800px) {
     height: 1124px;
     display: flex;
