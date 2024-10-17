@@ -36,7 +36,8 @@ function App() {
     <>
       <GlobalStyles />
       <AppContainer>
-        <RouterProvider router={router} />
+        {/* <RouterProvider router={router} /> */}
+        <Home/>
       </AppContainer>
     </>
   );
