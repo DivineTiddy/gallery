@@ -3,6 +3,8 @@ import Nav from "../../ui/Nav";
 import Album from "../albums/Album";
 
 const Layout = styled.div`
+  background-image: url(src/assets/Desktop.png);
+
   @media (min-width: 800px) {
     display: flex;
     width: 100%;
