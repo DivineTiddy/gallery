@@ -10,7 +10,7 @@ const AppContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background: url("/src/assets/image/desktop.png");
+  background: url("/desktop.png");
   @media (min-width: 800px) {
     height: 1124px;
     display: flex;
