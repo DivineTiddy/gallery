@@ -6,7 +6,7 @@ import Album from "./features/albums/Album";
 
 const AppContainer = styled.div`
   width: 100%;
-  height: auto;
+  height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

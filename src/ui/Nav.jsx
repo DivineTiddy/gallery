@@ -9,6 +9,7 @@ import album from "../assets/image/album.png";
 import recently from "../assets/image/recently.png";
 import recycle from "../assets/image/recycle.png";
 import profile from "../assets/image/Ellipse.png";
+import { Link } from "react-router-dom";
 
 const Layout = styled.div`
   width: 100%;
@@ -20,10 +21,10 @@ const Layout = styled.div`
   padding: 40px 0px;
   background-color: var(--color-brand-25);
   backdrop-filter: blur(54px); /* Blur to create frosted glass effect */
-@media (min-width: 800px) {
-  width: 40%;
-  height: 100%;
-}
+  @media (min-width: 800px) {
+    width: 100%;
+    height: 100%;
+  }
   .headerLayout {
     height: auto;
     width: 80%;
@@ -59,12 +60,8 @@ const Layout = styled.div`
     cursor: pointer;
     &:hover {
       background-color: var(--color-white-40);
-      transition: 0.2s ease box-shadow, background-color;
       border-radius: 50px;
       border: 1px solid var(--color-white-100);
-      box-shadow: 0 0 5px var(--color-white-40), 0 0 25px var(--color-white-40),
-        0 0 50px var(--color-white-40), 0 0 100px var(--color-white-40),
-        0 0 200px var(--color-white-40);
     }
   }
 `;
@@ -85,7 +82,9 @@ const Nav = () => {
         </div>
         <div className="container">
           <img src={album} style={{ width: "30px", height: "30px" }} />
-          <Text as="h3"> Albums</Text>
+          <Link to="album">
+            <Text as="h3"> Albums</Text>
+          </Link>
         </div>
         <div className="container">
           <img src={recently} style={{ width: "30px", height: "30px" }} />

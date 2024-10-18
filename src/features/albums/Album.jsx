@@ -11,7 +11,7 @@ const Layout = styled.div`
   align-items: center;
   gap: 25px;
   @media (min-width: 800px) {
-    width: 60%;
+    width: 55%;
   }
   .searchLayout {
     height: auto;
