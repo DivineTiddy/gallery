@@ -3,6 +3,7 @@ import Home from "./features/Main/Home";
 import GlobalStyles from "./styles/GlobalStyle";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Album from "./features/albums/Album";
+import Unknown from "./ui/unknown/Unknown";
 
 const AppContainer = styled.div`
   width: 100%;
@@ -24,10 +25,20 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-  },
-  {
-    path: "/album",
-    element: <Album />,
+    children: [
+      {
+        index: true,
+        element: <Album />,
+      },
+      {
+        path: "ablum",
+        element: <Album />,
+      },
+      {
+        path: "*",
+        element: <Unknown/>,
+      },
+    ],
   },
 ]);
 
@@ -35,9 +46,9 @@ function App() {
   return (
     <>
       <GlobalStyles />
+
       <AppContainer>
         <RouterProvider router={router} />
-        {/* <Home/> */}
       </AppContainer>
     </>
   );

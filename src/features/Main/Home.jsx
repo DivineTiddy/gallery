@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Nav from "../../ui/Nav";
-import Album from "../albums/Album";
+// import Album from "../albums/Album";
+import { Outlet } from "react-router-dom";
 
 const Layout = styled.div`
 
@@ -22,7 +23,8 @@ const Home = () => {
   return (
     <Layout>
       <Nav />
-      <Album />
+      <Outlet/>
+      {/* <Album /> */}
       {/* <header className="header"></header> */}
     </Layout>
   );

@@ -22,7 +22,7 @@ const Layout = styled.div`
   background-color: var(--color-brand-25);
   backdrop-filter: blur(54px); /* Blur to create frosted glass effect */
   @media (min-width: 800px) {
-    width: 100%;
+    width: 45%;
     height: 100%;
   }
   .headerLayout {
@@ -64,6 +64,9 @@ const Layout = styled.div`
       border: 1px solid var(--color-white-100);
     }
   }
+  .link {
+    text-decoration: none;
+  }
 `;
 // render component
 const Nav = () => {
@@ -78,21 +81,27 @@ const Nav = () => {
       <div className="categories">
         <div className="container">
           <img src={heart} style={{ width: "30px", height: "30px" }} />
-          <Text as="h3"> Favorites</Text>
+          <Link className="link" to="*">
+            <Text as="h3"> Favorites</Text>
+          </Link>
         </div>
         <div className="container">
           <img src={album} style={{ width: "30px", height: "30px" }} />
-          <Link to="album">
+          <Link className="link" to="ablum">
             <Text as="h3"> Albums</Text>
           </Link>
         </div>
         <div className="container">
           <img src={recently} style={{ width: "30px", height: "30px" }} />
-          <Text as="h3"> Recently Added</Text>
+          <Link className="link" to="*">
+            <Text as="h3"> Recently Added</Text>
+          </Link>
         </div>
         <div className="container">
           <img src={recycle} style={{ width: "30px", height: "30px" }} />
-          <Text as="h3"> Recycle Bin</Text>
+          <Link className="link" to="*">
+            <Text as="h3"> Recycle Bin</Text>
+          </Link>
         </div>
       </div>
       <div className="userProfile">
