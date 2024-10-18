@@ -4,7 +4,6 @@ import Nav from "../../ui/Nav";
 import { Outlet } from "react-router-dom";
 
 const Layout = styled.div`
-
   @media (min-width: 800px) {
     display: flex;
     width: 100%;
@@ -20,10 +19,11 @@ const Layout = styled.div`
 `;
 
 const Home = () => {
+ 
   return (
     <Layout>
       <Nav />
-      <Outlet/>
+      <Outlet />
       {/* <Album /> */}
       {/* <header className="header"></header> */}
     </Layout>

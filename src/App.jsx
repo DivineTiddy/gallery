@@ -4,14 +4,16 @@ import GlobalStyles from "./styles/GlobalStyle";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Album from "./features/albums/Album";
 import Unknown from "./ui/unknown/Unknown";
+import { UseContext } from "./context/UseContext";
 
 const AppContainer = styled.div`
   width: 100%;
   height: 100%;
+ 
+  background: url("/desktop.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background: url("/desktop.png");
   @media (min-width: 800px) {
     height: 1124px;
     display: flex;
@@ -36,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <Unknown/>,
+        element: <Unknown />,
       },
     ],
   },
@@ -48,7 +50,9 @@ function App() {
       <GlobalStyles />
 
       <AppContainer>
-        <RouterProvider router={router} />
+        <UseContext>
+          <RouterProvider router={router} />
+        </UseContext>
       </AppContainer>
     </>
   );
