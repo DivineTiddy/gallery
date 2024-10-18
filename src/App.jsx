@@ -3,7 +3,6 @@ import Home from "./features/Main/Home";
 import GlobalStyles from "./styles/GlobalStyle";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Album from "./features/albums/Album";
-import background from "./assets/image/Desktop.png"
 
 const AppContainer = styled.div`
   width: 100%;
@@ -11,7 +10,7 @@ const AppContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url(src/assets/image/Desktop.png);
+  background: url("src/assets/image/newdesk.jpg");
   @media (min-width: 800px) {
     height: 1124px;
     display: flex;
@@ -37,8 +36,8 @@ function App() {
     <>
       <GlobalStyles />
       <AppContainer>
-        {/* <RouterProvider router={router} /> */}
-        <Home/>
+        <RouterProvider router={router} />
+        {/* <Home/> */}
       </AppContainer>
     </>
   );
