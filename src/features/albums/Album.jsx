@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Text from "../../ui/Text";
 import beach from "../../assets/image/beach.png";
+import { GetAlbumByName } from "../../service/albumApi";
+import { useLoaderData } from "react-router-dom";
 
 const Layout = styled.div`
   background-color: var(--color-brand-30);
@@ -25,7 +27,7 @@ const Layout = styled.div`
   }
   .container::-webkit-scrollbar {
     display: none;
-}
+  }
 
   .imageLayout {
     width: auto;
@@ -37,6 +39,9 @@ const Layout = styled.div`
 `;
 
 const Album = () => {
+  const album = useLoaderData();
+  console.log(album);
+
   return (
     <Layout>
       <div className="searchLayout">
@@ -79,5 +84,10 @@ const Album = () => {
     </Layout>
   );
 };
+
+export async function Loader() {
+  const album = GetAlbumByName();
+  return album;
+}
 
 export default Album;

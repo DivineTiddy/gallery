@@ -2,14 +2,14 @@ import styled from "styled-components";
 import Home from "./features/Main/Home";
 import GlobalStyles from "./styles/GlobalStyle";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Album from "./features/albums/Album";
+import Album, { Loader as AlbumLoader } from "./features/albums/Album";
 import Unknown from "./ui/unknown/Unknown";
 import { UseContext } from "./context/UseContext";
 
 const AppContainer = styled.div`
   width: 100%;
   height: 800px;
- 
+
   background: url("/desktop.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -35,6 +35,7 @@ const router = createBrowserRouter([
       {
         path: "ablum",
         element: <Album />,
+        loader: AlbumLoader,
       },
       {
         path: "*",
