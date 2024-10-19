@@ -51,7 +51,7 @@ const Layout = styled.div`
     align-items: center;
   }
   .container {
-    width: auto;
+    width: 100%;
     height: 44px;
     display: flex;
     align-items: center;
