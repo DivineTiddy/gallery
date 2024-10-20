@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 const ContextProvider = createContext();
 
 const inistailState = {
-  clickAlbum: false,
+  clickAlbum: true,
   clickRecently: false,
   clickFavorites: false,
   clickBin: false,
