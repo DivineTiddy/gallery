@@ -7,6 +7,7 @@ const inistailState = {
   clickRecently: false,
   clickFavorites: false,
   clickBin: false,
+  searchValue:"car",
 };
 
 const Reducer = (state, action) => {
@@ -19,14 +20,15 @@ const Reducer = (state, action) => {
       return { ...state, clickAlbum: false , clickRecently:false , clickFavorites:true , clickBin:false};
     case "clickBin":
       return { ...state,clickAlbum: false , clickRecently:false , clickFavorites:false , clickBin:true };
-
+    case "search":
+      return {...state , searchValue:action.payLoad}
     default:
       break;
   }
 };
 
 const UseContext = ({ children }) => {
-  const [{ clickAlbum, clickRecently, clickFavorites, clickBin }, dispatch] =
+  const [{ clickAlbum, clickRecently, clickFavorites, clickBin ,searchValue }, dispatch] =
     useReducer(Reducer, inistailState);
   return (
     <ContextProvider.Provider
@@ -35,6 +37,7 @@ const UseContext = ({ children }) => {
         clickRecently,
         clickFavorites,
         clickBin,
+        searchValue,
         dispatch,
       }}
     >

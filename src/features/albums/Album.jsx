@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import Text from "../../ui/Text";
-import beach from "../../assets/image/beach.png";
+// import beach from "../../assets/image/beach.png";
 import { GetAlbumByName } from "../../service/albumApi";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData , useNavigation } from "react-router-dom";
+import ListOfAlbum from "./ListOfAlbum";
+import { UseValue } from "../../context/UseContext";
 
 const Layout = styled.div`
   background-color: var(--color-brand-30);
@@ -22,8 +24,13 @@ const Layout = styled.div`
   }
   .container {
     width: 100%;
-    height: 100%;
-    overflow-x: scroll;
+    height: 400px;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    @media (min-width: 800px) {
+      height: 400px;
+    }
   }
   .container::-webkit-scrollbar {
     display: none;
@@ -31,26 +38,44 @@ const Layout = styled.div`
 
   .imageLayout {
     width: auto;
-    height: 100%;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+    height: 309px;
+    display: flex;
+    flex-direction: column;
     gap: 35px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    @media (min-width: 800px) {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+    }
   }
 `;
 
 const Album = () => {
-  const album = useLoaderData();
-  console.log(album);
+  const { photos } = useLoaderData();
+  const all = photos.length
+  const {dispatch , searchValue } = UseValue()
+  const navigation = useNavigation()
+  GetAlbumByName({id:searchValue})
+
+  const isLoading = navigation.state === "loading"
+
+
+  
+  // const  data  = useLoaderData();
+
 
   return (
     <Layout>
       <div className="searchLayout">
         <span>
           <Text as="h2">My Albums</Text>
-          <Text as="h6">6 Albums</Text>
+          <Text as="h6">{all} Albums</Text>
         </span>
         <form>
           <input
+          onChange={(e)=>dispatch({type:"search" , payLoad:e.target.value})}
             autoFocus
             autoCorrect="true"
             autoComplete="true"
@@ -63,6 +88,7 @@ const Album = () => {
               width: "100%",
               height: "50px",
               backgroundColor: "inherit",
+              borderRadius:"20px"
             }}
             type="search"
             placeholder="nature"
@@ -70,16 +96,12 @@ const Album = () => {
         </form>
       </div>
       <div className="container">
-        <div className="imageLayout">
-          <img src={beach} style={{ width: "259px", height: "auto" }} />
-          <img src={beach} style={{ width: "259px", height: "auto" }} />
-          <img src={beach} style={{ width: "259px", height: "auto" }} />
-          <img src={beach} style={{ width: "259px", height: "auto" }} />
-          <img src={beach} style={{ width: "259px", height: "auto" }} />
-          <img src={beach} style={{ width: "259px", height: "auto" }} />
-          <img src={beach} style={{ width: "259px", height: "auto" }} />
-          <img src={beach} style={{ width: "259px", height: "auto" }} />
-        </div>
+        {isLoading && <p>hello</p>}
+        <ul className="imageLayout">
+          {photos.map((item) => (
+            <ListOfAlbum item={item} key={item.id} />
+          ))}
+        </ul>
       </div>
     </Layout>
   );

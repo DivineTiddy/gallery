@@ -102,7 +102,7 @@ const Nav = () => {
           <Link
             onClick={() => dispatch({ type: "clickAlbum" })}
             className="link"
-            to="ablum"
+            to="album"
           >
             <Text as="h3"> Albums</Text>
           </Link>
