@@ -25,15 +25,12 @@ const AppContainer = styled.div`
 `;
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <Home />,
+
     children: [
+    
       {
-        index: true,
-        element: <Album />,
-      },
-      {
-        path: "album",
+        path: "/",
         element: <Album />,
         loader: AlbumLoader,
       },
@@ -43,13 +40,17 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "album",
+    element: <Album />,
+    loader: AlbumLoader,
+  },
 ]);
 
 function App() {
   return (
     <>
       <GlobalStyles />
-
       <AppContainer>
         <UseContext>
           <RouterProvider router={router} />

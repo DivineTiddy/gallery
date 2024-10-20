@@ -19,15 +19,18 @@ const Layout = styled.div`
 `;
 
 const Home = () => {
- 
+
+  
+
   return (
     <Layout>
       <Nav />
-      <Outlet />
+      <Outlet/>
       {/* <Album /> */}
       {/* <header className="header"></header> */}
     </Layout>
   );
 };
+
 
 export default Home;

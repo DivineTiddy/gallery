@@ -53,8 +53,8 @@ const Layout = styled.div`
 `;
 
 const Album = () => {
-  const { photos } = useLoaderData();
-  const all = photos.length
+  const {photos} = useLoaderData()
+  // const all = photos.length
   const {dispatch , searchValue } = UseValue()
   const navigation = useNavigation()
   GetAlbumByName({id:searchValue})
@@ -71,7 +71,7 @@ const Album = () => {
       <div className="searchLayout">
         <span>
           <Text as="h2">My Albums</Text>
-          <Text as="h6">{all} Albums</Text>
+          <Text as="h6"> Albums</Text>
         </span>
         <form>
           <input
@@ -106,10 +106,11 @@ const Album = () => {
     </Layout>
   );
 };
-
 export async function Loader() {
   const album = GetAlbumByName();
   return album;
 }
+
+
 
 export default Album;
