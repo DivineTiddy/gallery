@@ -1,35 +1,101 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import propTypes from "prop-types";
 const ContextProvider = createContext();
+
+const apiKey = "1CmOFAU0ddD2A3tBfbJx0y0hTmQe8Ku1FZG2WJQl8Z92mtseiBmHqGCQ";
+const url = "https://api.pexels.com/v1";
 
 const inistailState = {
   clickAlbum: true,
   clickRecently: false,
   clickFavorites: false,
   clickBin: false,
-  searchValue:"car",
+  searchValue: "nature",
+  data: [],
 };
 
 const Reducer = (state, action) => {
   switch (action.type) {
     case "clickAlbum":
-      return { ...state, clickAlbum: true , clickRecently:false , clickFavorites:false , clickBin:false};
+      return {
+        ...state,
+        clickAlbum: true,
+        clickRecently: false,
+        clickFavorites: false,
+        clickBin: false,
+        isLoading: false,
+      };
     case "clickRecently":
-      return { ...state, clickAlbum: false , clickRecently:true , clickFavorites:false , clickBin:false};
+      return {
+        ...state,
+        clickAlbum: false,
+        clickRecently: true,
+        clickFavorites: false,
+        clickBin: false,
+      };
     case "clickFavorites":
-      return { ...state, clickAlbum: false , clickRecently:false , clickFavorites:true , clickBin:false};
+      return {
+        ...state,
+        clickAlbum: false,
+        clickRecently: false,
+        clickFavorites: true,
+        clickBin: false,
+      };
     case "clickBin":
-      return { ...state,clickAlbum: false , clickRecently:false , clickFavorites:false , clickBin:true };
+      return {
+        ...state,
+        clickAlbum: false,
+        clickRecently: false,
+        clickFavorites: false,
+        clickBin: true,
+      };
+    case "loading":
+      return { ...state, isLoading: true };
     case "search":
-      return {...state , searchValue:action.payLoad}
+      return { ...state, searchValue: action.payLoad };
+    case "data":
+      return { ...state, data: action.payLoad, isLoading: false };
     default:
       break;
   }
 };
 
 const UseContext = ({ children }) => {
-  const [{ clickAlbum, clickRecently, clickFavorites, clickBin ,searchValue }, dispatch] =
-    useReducer(Reducer, inistailState);
+  const [
+    {
+      clickAlbum,
+      clickRecently,
+      clickFavorites,
+      clickBin,
+      searchValue,
+      data,
+      isLoading,
+    },
+    dispatch,
+  ] = useReducer(Reducer, inistailState);
+  useEffect(
+    function () {
+      async function searchPhoto() {
+        dispatch({ type: "loading" });
+        try {
+          const res = await fetch(`${url}/search?query=${searchValue}`, {
+            method: "GET",
+            headers: {
+              Authorization: apiKey, // Add the API key in the Authorization header
+            },
+          });
+          const data = await res.json();
+          // console.log(data);
+
+          dispatch({ type: "data", payLoad: data });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      searchPhoto();
+    },
+    [searchValue]
+  );
   return (
     <ContextProvider.Provider
       value={{
@@ -39,6 +105,8 @@ const UseContext = ({ children }) => {
         clickBin,
         searchValue,
         dispatch,
+        data,
+        isLoading,
       }}
     >
       {children}

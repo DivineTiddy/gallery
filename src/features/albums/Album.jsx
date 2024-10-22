@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import Text from "../../ui/Text";
-// import beach from "../../assets/image/beach.png";
-import { GetAlbumByName } from "../../service/albumApi";
-import { useLoaderData , useNavigation } from "react-router-dom";
 import ListOfAlbum from "./ListOfAlbum";
 import { UseValue } from "../../context/UseContext";
+import { useState } from "react";
+import Loading from "../../ui/Loading";
 
 const Layout = styled.div`
   background-color: var(--color-brand-30);
@@ -53,18 +52,15 @@ const Layout = styled.div`
 `;
 
 const Album = () => {
-  const {photos} = useLoaderData()
-  // const all = photos.length
-  const {dispatch , searchValue } = UseValue()
-  const navigation = useNavigation()
-  GetAlbumByName({id:searchValue})
+ 
+  const { dispatch, data , isLoading } = UseValue();
+  const { photos } = data;
+  const [value , setValue] = useState("")
 
-  const isLoading = navigation.state === "loading"
-
-
-  
-  // const  data  = useLoaderData();
-
+  function HandleSubmit(e) {
+    e.preventDefault();
+    dispatch({type:"search" , payLoad: value})
+  }
 
   return (
     <Layout>
@@ -73,9 +69,11 @@ const Album = () => {
           <Text as="h2">My Albums</Text>
           <Text as="h6"> Albums</Text>
         </span>
-        <form>
+        <form onSubmit={HandleSubmit}>
           <input
-          onChange={(e)=>dispatch({type:"search" , payLoad:e.target.value})}
+            onChange={(e) =>
+             setValue(e.target.value)
+            }
             autoFocus
             autoCorrect="true"
             autoComplete="true"
@@ -88,29 +86,25 @@ const Album = () => {
               width: "100%",
               height: "50px",
               backgroundColor: "inherit",
-              borderRadius:"20px"
+              borderRadius: "20px",
             }}
             type="search"
-            placeholder="nature"
+            placeholder="example nature"
           />
         </form>
       </div>
       <div className="container">
-        {isLoading && <p>hello</p>}
         <ul className="imageLayout">
-          {photos.map((item) => (
-            <ListOfAlbum item={item} key={item.id} />
-          ))}
+          {isLoading ? <Loading/> : photos && photos.length > 0 ? (
+            photos.map((item) => <ListOfAlbum item={item} key={item.id} />)
+          ) : (
+            <p>no data</p>
+          )}
         </ul>
       </div>
     </Layout>
   );
 };
-export async function Loader() {
-  const album = GetAlbumByName();
-  return album;
-}
-
 
 
 export default Album;

@@ -19,7 +19,6 @@ const Layout = styled.div`
 `;
 
 const Home = () => {
-
   
 
   return (

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Home from "./features/Main/Home";
 import GlobalStyles from "./styles/GlobalStyle";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Album, { Loader as AlbumLoader } from "./features/albums/Album";
+import Album from "./features/albums/Album";
 import Unknown from "./ui/unknown/Unknown";
 import { UseContext } from "./context/UseContext";
 
@@ -30,9 +30,8 @@ const router = createBrowserRouter([
     children: [
     
       {
-        path: "/",
+        index:true ,
         element: <Album />,
-        loader: AlbumLoader,
       },
       {
         path: "*",
@@ -40,11 +39,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "album",
-    element: <Album />,
-    loader: AlbumLoader,
-  },
+ 
 ]);
 
 function App() {
