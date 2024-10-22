@@ -16,6 +16,8 @@ const Layout = styled.div`
   padding-top: 250px;
   @media (min-width: 800px) {
     width: 55%;
+    padding-top: 0px;
+
   }
   .searchLayout {
     height: auto;
@@ -34,6 +36,9 @@ const Layout = styled.div`
   }
   .container::-webkit-scrollbar {
     display: none;
+  }
+  .custom-input::placeholder{
+    color: white;
   }
 
   .imageLayout {
@@ -68,11 +73,15 @@ const Album = () => {
   return (
     <Layout>
       <div className="searchLayout">
+      <span>
+          <Text as="h2">My Albums</Text>
+        </span>
         <span>
           <Text as="h6">{allAlbum} Albums</Text>
         </span>
         <form onSubmit={HandleSubmit}>
           <input
+          className="custom-input"
             onChange={(e) =>
              setValue(e.target.value)
             }
@@ -89,9 +98,10 @@ const Album = () => {
               height: "50px",
               backgroundColor: "inherit",
               borderRadius: "20px",
+            
             }}
             type="search"
-            placeholder="example nature"
+            placeholder="car"
           />
         </form>
       </div>

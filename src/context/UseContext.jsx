@@ -10,7 +10,7 @@ const inistailState = {
   clickRecently: false,
   clickFavorites: false,
   clickBin: false,
-  searchValue: "nature",
+  searchValue: "car",
   isClick: false,
   data: [],
 };

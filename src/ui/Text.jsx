@@ -8,6 +8,7 @@ const Text = styled.h1`
       line-height: 87px;
       font-size: 64px;
       color: var(--color-white-100);
+      
     `}
     ${(props) =>
     props.as === "h2" &&
@@ -44,5 +45,7 @@ const Text = styled.h1`
     `}
   padding: 0px;
   margin: 0px;
+  font-family: "Open Sans", sans-serif;
+
 `;
 export default Text;

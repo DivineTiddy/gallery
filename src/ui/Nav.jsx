@@ -3,7 +3,6 @@
 // styles fuctionality
 import styled from "styled-components";
 import Text from "./Text";
-import Dot from "../assets/icon/Dot";
 import heart from "../assets/image/heart 1.png";
 import album from "../assets/image/album.png";
 import recently from "../assets/image/recently.png";
@@ -12,6 +11,8 @@ import profile from "../assets/image/Ellipse.png";
 import { Link } from "react-router-dom";
 import { UseValue } from "../context/UseContext";
 import { useState } from "react";
+import Menu from "../assets/icon/Menu";
+import Close from "../assets/icon/Close";
 
 const Layout = styled.div`
   position: fixed;
@@ -29,6 +30,7 @@ const Layout = styled.div`
   @media (min-width: 800px) {
     width: 45%;
     height: 100%;
+    position: relative;
   }
   .headerLayout {
     height: auto;
@@ -80,24 +82,28 @@ const Layout = styled.div`
 `;
 // render component
 const Nav = () => {
-  const { clickAlbum, clickRecently, clickFavorites, clickBin, dispatch , isClick} =
-    UseValue();
+  const {
+    clickAlbum,
+    clickRecently,
+    clickFavorites,
+    clickBin,
+    dispatch,
+    isClick,
+  } = UseValue();
   const [isOpen, setIsOpen] = useState(false);
   function HandleClick() {
     setIsOpen((e) => !e);
-    dispatch({type : "isOpen" , payLoad: isOpen })
+    dispatch({ type: "isOpen", payLoad: isOpen });
   }
- 
+
   return (
     <Layout>
       <div className="headerLayout">
         <span className="span">
           <Text as="h1">Gallery</Text>{" "}
-          <div onClick={HandleClick}>
-            {" "}
-            <Dot />
-          </div>
+          <div onClick={HandleClick}> {isClick ? <Close /> : <Menu />}</div>
         </span>
+       
         <Text as="h6">All Photos</Text>
       </div>
       {isClick && (
