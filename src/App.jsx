@@ -8,7 +8,7 @@ import { UseContext } from "./context/UseContext";
 
 const AppContainer = styled.div`
   width: 100%;
-  height: 1500px;
+  height: auto;
 
   background: url("/desktop.png");
   background-repeat: no-repeat;
