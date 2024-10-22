@@ -11,6 +11,7 @@ const inistailState = {
   clickFavorites: false,
   clickBin: false,
   searchValue: "nature",
+  isClick: false,
   data: [],
 };
 
@@ -24,6 +25,8 @@ const Reducer = (state, action) => {
         clickFavorites: false,
         clickBin: false,
         isLoading: false,
+        isClick:false
+
       };
     case "clickRecently":
       return {
@@ -40,6 +43,8 @@ const Reducer = (state, action) => {
         clickRecently: false,
         clickFavorites: true,
         clickBin: false,
+        isClick:false
+
       };
     case "clickBin":
       return {
@@ -48,7 +53,11 @@ const Reducer = (state, action) => {
         clickRecently: false,
         clickFavorites: false,
         clickBin: true,
+        isClick:false
       };
+    case "isOpen":
+      return { ...state, isClick: action.payLoad };
+
     case "loading":
       return { ...state, isLoading: true };
     case "search":
@@ -70,6 +79,7 @@ const UseContext = ({ children }) => {
       searchValue,
       data,
       isLoading,
+      isClick,
     },
     dispatch,
   ] = useReducer(Reducer, inistailState);
@@ -107,6 +117,7 @@ const UseContext = ({ children }) => {
         dispatch,
         data,
         isLoading,
+        isClick
       }}
     >
       {children}

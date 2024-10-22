@@ -13,6 +13,7 @@ const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 25px;
+  padding-top: 250px;
   @media (min-width: 800px) {
     width: 55%;
   }
@@ -23,7 +24,7 @@ const Layout = styled.div`
   }
   .container {
     width: 100%;
-    height: 400px;
+    height: 800px;
     overflow-y: scroll;
     display: flex;
     justify-content: center;
@@ -55,19 +56,20 @@ const Album = () => {
  
   const { dispatch, data , isLoading } = UseValue();
   const { photos } = data;
+  const allAlbum =photos && photos.length
   const [value , setValue] = useState("")
 
   function HandleSubmit(e) {
     e.preventDefault();
     dispatch({type:"search" , payLoad: value})
+    setValue("")
   }
 
   return (
     <Layout>
       <div className="searchLayout">
         <span>
-          <Text as="h2">My Albums</Text>
-          <Text as="h6"> Albums</Text>
+          <Text as="h6">{allAlbum} Albums</Text>
         </span>
         <form onSubmit={HandleSubmit}>
           <input

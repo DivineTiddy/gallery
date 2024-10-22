@@ -11,8 +11,12 @@ import recycle from "../assets/image/recycle.png";
 import profile from "../assets/image/Ellipse.png";
 import { Link } from "react-router-dom";
 import { UseValue } from "../context/UseContext";
+import { useState } from "react";
 
 const Layout = styled.div`
+  position: fixed;
+  z-index: 10;
+  top: 0%;
   width: 100%;
   height: auto;
   display: flex;
@@ -76,61 +80,79 @@ const Layout = styled.div`
 `;
 // render component
 const Nav = () => {
-  const { clickAlbum, clickRecently, clickFavorites, clickBin, dispatch } =
+  const { clickAlbum, clickRecently, clickFavorites, clickBin, dispatch , isClick} =
     UseValue();
+  const [isOpen, setIsOpen] = useState(false);
+  function HandleClick() {
+    setIsOpen((e) => !e);
+    dispatch({type : "isOpen" , payLoad: isOpen })
+  }
+ 
   return (
     <Layout>
       <div className="headerLayout">
         <span className="span">
-          <Text as="h1">Gallery</Text> <Dot />
+          <Text as="h1">Gallery</Text>{" "}
+          <div onClick={HandleClick}>
+            {" "}
+            <Dot />
+          </div>
         </span>
         <Text as="h6">All Photos</Text>
       </div>
-      <div className="categories">
-        <div className={clickFavorites ? "container hover" : "container"}>
-          <img src={heart} style={{ width: "30px", height: "30px" }} />
-          <Link
-            onClick={() => dispatch({ type: "clickFavorites" })}
-            className="link"
-            to="*"
-          >
-            <Text as="h3"> Favorites</Text>
-          </Link>
-        </div>
-        <div className={clickAlbum ? "container hover" : "container"}>
-          <img src={album} style={{ width: "30px", height: "30px" }} />
-          <Link
-            onClick={() => dispatch({ type: "clickAlbum" })}
-            className="link"
-            to="/"
-          >
-            <Text as="h3"> Albums</Text>
-          </Link>
-        </div>
-        <div className={clickRecently ? "container hover" : "container"}>
-          <img src={recently} style={{ width: "30px", height: "30px" }} />
-          <Link
-          onClick={() => dispatch({ type: "clickRecently" })}
-           className="link" to="*">
-            <Text as="h3"> Recently Added</Text>
-          </Link>
-        </div>
-        <div className={clickBin ? "container hover" : "container"}>
-          <img src={recycle} style={{ width: "30px", height: "30px" }} />
-          <Link 
-           onClick={() => dispatch({ type: "clickBin" })}
-           className="link" to="*">
-            <Text as="h3"> Recycle Bin</Text>
-          </Link>
-        </div>
-      </div>
-      <div className="userProfile">
-        <img src={profile} style={{ width: "120px", height: "120px" }} />
+      {isClick && (
+        <>
+          <div className="categories">
+            <div className={clickFavorites ? "container hover" : "container"}>
+              <img src={heart} style={{ width: "30px", height: "30px" }} />
+              <Link
+                onClick={() => dispatch({ type: "clickFavorites" })}
+                className="link"
+                to="*"
+              >
+                <Text as="h3"> Favorites</Text>
+              </Link>
+            </div>
+            <div className={clickAlbum ? "container hover" : "container"}>
+              <img src={album} style={{ width: "30px", height: "30px" }} />
+              <Link
+                onClick={() => dispatch({ type: "clickAlbum" })}
+                className="link"
+                to="/"
+              >
+                <Text as="h3"> Albums</Text>
+              </Link>
+            </div>
+            <div className={clickRecently ? "container hover" : "container"}>
+              <img src={recently} style={{ width: "30px", height: "30px" }} />
+              <Link
+                onClick={() => dispatch({ type: "clickRecently" })}
+                className="link"
+                to="*"
+              >
+                <Text as="h3"> Recently Added</Text>
+              </Link>
+            </div>
+            <div className={clickBin ? "container hover" : "container"}>
+              <img src={recycle} style={{ width: "30px", height: "30px" }} />
+              <Link
+                onClick={() => dispatch({ type: "clickBin" })}
+                className="link"
+                to="*"
+              >
+                <Text as="h3"> Recycle Bin</Text>
+              </Link>
+            </div>
+          </div>
+          <div className="userProfile">
+            <img src={profile} style={{ width: "120px", height: "120px" }} />
 
-        <span style={{ width: "146px", height: "52px" }}>
-          <Text type="user">John Bill @john_bill3110</Text>
-        </span>
-      </div>
+            <span style={{ width: "146px", height: "52px" }}>
+              <Text type="user">John Bill @john_bill3110</Text>
+            </span>
+          </div>
+        </>
+      )}
     </Layout>
   );
 };

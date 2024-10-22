@@ -18,7 +18,6 @@ gap: 10px;
 const ListOfAlbum = ({ item }) => {
   const image = item.src.original
   const discription = item.alt
-  const photographer = item.photographer
 
   return (
     <List>
@@ -30,7 +29,6 @@ const ListOfAlbum = ({ item }) => {
       <Text type="user">
       {discription}
       </Text>
-      <Text type="user">photograph by {photographer}</Text>
     </List>
   );
 };
