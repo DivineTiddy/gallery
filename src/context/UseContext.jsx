@@ -35,6 +35,7 @@ const Reducer = (state, action) => {
         clickRecently: true,
         clickFavorites: false,
         clickBin: false,
+        isClick:false
       };
     case "clickFavorites":
       return {
