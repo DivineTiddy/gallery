@@ -4,6 +4,7 @@ import ListOfAlbum from "./ListOfAlbum";
 import { UseValue } from "../../context/UseContext";
 import { useState } from "react";
 import Loading from "../../ui/Loading";
+import Error from "../../ui/unknown/Error";
 
 const Layout = styled.div`
   background-color: var(--color-brand-30);
@@ -86,11 +87,12 @@ const Album = () => {
              setValue(e.target.value)
             }
             autoFocus
-            autoCorrect="true"
-            autoComplete="true"
+            autoCorrect={true}
+            autoComplete={true}
+            spellCheck={true}
             style={{
               color: "white",
-              fontSize: "20px",
+              fontSize: "12px",
               padding: "0px 10px",
               border: "1px solid white",
               outline: "none",
@@ -98,6 +100,7 @@ const Album = () => {
               height: "50px",
               backgroundColor: "inherit",
               borderRadius: "20px",
+              
             
             }}
             type="search"
@@ -110,7 +113,7 @@ const Album = () => {
           {isLoading ? <Loading/> : photos && photos.length > 0 ? (
             photos.map((item) => <ListOfAlbum item={item} key={item.id} />)
           ) : (
-            <p>no data</p>
+          <Error/>
           )}
         </ul>
       </div>

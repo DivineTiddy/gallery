@@ -11,7 +11,7 @@ const inistailState = {
   clickFavorites: false,
   clickBin: false,
   searchValue: "car",
-  isClick: false,
+  isClick: true,
   data: [],
 };
 

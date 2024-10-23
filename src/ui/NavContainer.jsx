@@ -1,41 +1,14 @@
-//  this is nav section
-
-// styles fuctionality
-import styled from "styled-components";
-import Text from "./Text";
+import styled from "styled-components"
+import Text from "./Text"
+import { Link } from "react-router-dom"
+import { UseValue } from "../context/UseContext"
 import heart from "../assets/image/heart 1.png";
 import album from "../assets/image/album.png";
 import recently from "../assets/image/recently.png";
 import recycle from "../assets/image/recycle.png";
 import profile from "../assets/image/Ellipse.png";
-import { Link } from "react-router-dom";
-import { UseValue } from "../context/UseContext";
-import { useState } from "react";
-import Menu from "../assets/icon/Menu";
-import Close from "../assets/icon/Close";
 
 const Layout = styled.div`
-  position: fixed;
-  z-index: 10;
-  top: 0%;
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 67px;
-  padding: 40px 0px;
-  background-color: var(--color-brand-25);
-  backdrop-filter: blur(54px); /* Blur to create frosted glass effect */
-  @media (min-width: 800px) {
-    width: 45%;
-    height: 100%;
-    position: relative;
-  }
-  .headerLayout {
-    height: auto;
-    width: 80%;
-  }
   .categories {
     height: auto;
     width: 80%;
@@ -79,36 +52,20 @@ const Layout = styled.div`
   .link {
     text-decoration: none;
   }
-`;
-// render component
-const Nav = () => {
-  const {
-    clickAlbum,
-    clickRecently,
-    clickFavorites,
-    clickBin,
-    dispatch,
-    isClick,
-  } = UseValue();
-  const [isOpen, setIsOpen] = useState(true);
-  function HandleClick() {
-    setIsOpen((e) => !e);
-    dispatch({ type: "isOpen", payLoad: isOpen });
-  }
 
+`
+
+const NavContainer = () => {
+    const {
+        clickAlbum,
+        clickRecently,
+        clickFavorites,
+        clickBin,
+        dispatch,
+      } = UseValue();
   return (
     <Layout>
-      <div className="headerLayout">
-        <span className="span">
-          <Text as="h1">Gallery</Text>{" "}
-          <div onClick={HandleClick}> {isClick ? <Close /> : <Menu />}</div>
-        </span>
-       
-        <Text as="h6">All Photos</Text>
-      </div>
-      {isClick && (
-        <>
-          <div className="categories">
+         <div className="categories">
             <div className={clickFavorites ? "container hover" : "container"}>
               <img src={heart} style={{ width: "30px", height: "30px" }} />
               <Link
@@ -157,10 +114,8 @@ const Nav = () => {
               <Text type="user">John Bill @john_bill3110</Text>
             </span>
           </div>
-        </>
-      )}
     </Layout>
-  );
-};
+  )
+}
 
-export default Nav;
+export default NavContainer

@@ -1,7 +1,15 @@
+import styled from "styled-components";
+
+const Layout = styled.div`
+@media (min-width: 800px) {
+  display: none;
+}
+`
+
 const Close = () => {
   return (
-    <div>
-      <svg
+  <Layout>
+    <svg
             style={{cursor: 'pointer'}}
 
         xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +20,7 @@ const Close = () => {
       >
         <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
       </svg>
-    </div>
+  </Layout>
   );
 };
 

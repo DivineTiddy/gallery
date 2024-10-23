@@ -6,7 +6,7 @@ const Text = styled.h1`
     css`
       font-weight: bold;
       line-height: 87px;
-      font-size: 64px;
+      font-size: 34px;
       color: var(--color-white-100);
       
     `}
@@ -15,7 +15,7 @@ const Text = styled.h1`
     css`
       font-weight: normal;
       line-height: 65px;
-      font-size: 48px;
+      font-size: 18px;
       color: var(--color-white-100);
     `}
   ${(props) =>
@@ -23,7 +23,7 @@ const Text = styled.h1`
     css`
       font-weight: normal;
       line-height: 27px;
-      font-size: 20px;
+      font-size: 12px;
       color: var(--color-white-100);
     `}
     ${(props) =>
@@ -31,7 +31,7 @@ const Text = styled.h1`
     css`
       font-weight: lighter;
       line-height: 44px;
-      font-size: 32px;
+      font-size: 12px;
       color: var(--color-white-100);
     `}
     ${(props) =>
@@ -39,7 +39,7 @@ const Text = styled.h1`
     css`
       font-weight: normal;
       line-height: 27px;
-      font-size: 15px;
+      font-size: 10px;
       text-align: center;
       color: var(--color-white-100);
     `}
